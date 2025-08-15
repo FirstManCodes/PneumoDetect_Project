@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoDetect - Features</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-900 to-blue-700 text-white font-sans">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-950 shadow-lg fixed top-0 w-full z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <a href="home.html" class="text-2xl font-bold text-white">PneumoDetect</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="home.html" class="hover:text-yellow-300 transition">Home</a>
+                <a href="features.html" class="text-yellow-300 font-semibold">Features</a>
+                <a href="about.html" class="hover:text-yellow-300 transition">About</a>
+                <a href="predict.html" class="hover:text-yellow-300 transition">Predict</a>
+                <a href="signup.html" class="hover:text-yellow-300 transition">Sign Up</a>
+                <a href="login.html" class="hover:text-yellow-300 transition">Login</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menuBtn" class="text-white focus:outline-none">
+                    ☰
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-blue-800 px-6 pb-4">
+            <a href="home.html" class="block py-2 hover:text-yellow-300">Home</a>
+            <a href="features.html" class="block py-2 text-yellow-300 font-semibold">Features</a>
+            <a href="about.html" class="block py-2 hover:text-yellow-300">About</a>
+            <a href="predict.html" class="block py-2 hover:text-yellow-300">Predict</a>
+            <a href="signup.html" class="block py-2 hover:text-yellow-300">Sign Up</a>
+            <a href="login.html" class="block py-2 hover:text-yellow-300">Login</a>
+        </div>
+    </nav>
+
+    <!-- Features Section -->
+    <section class="pt-24 pb-16 px-6 md:px-20">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 text-yellow-300">Our Core Features</h1>
+            <p class="text-lg text-gray-200 max-w-3xl mx-auto">
+                PneumoDetect is designed to combine **cutting-edge AI technology** with a **user-friendly interface** to empower healthcare professionals and individuals alike.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/ffffff/external-ai-robotics-flaticons-lineal-color-flat-icons.png" class="mb-4 mx-auto" alt="AI Detection">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">AI-Powered Detection</h3>
+                <p class="text-gray-200">
+                    Our deep learning model analyzes chest X-rays to detect pneumonia with high accuracy, assisting doctors in rapid and precise diagnoses.
+                </p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/ffffff/external-history-ui-and-ux-justicon-lineal-color-justicon.png" class="mb-4 mx-auto" alt="History Tracking">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">Prediction History</h3>
+                <p class="text-gray-200">
+                    Securely store and review all previous predictions in your dashboard for easy tracking and patient monitoring over time.
+                </p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/color/64/ffffff/online-store.png" class="mb-4 mx-auto" alt="Web Access">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">Accessible Anywhere</h3>
+                <p class="text-gray-200">
+                    Access PneumoDetect via web on any device — whether in the hospital, clinic, or at home — without installation hassles.
+                </p>
+            </div>
+            <!-- Feature 4 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/color/64/ffffff/secured-letter--v1.png" class="mb-4 mx-auto" alt="Secure Data">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">Data Security</h3>
+                <p class="text-gray-200">
+                    Built with security in mind, ensuring that patient data is encrypted and stored securely to comply with healthcare data regulations.
+                </p>
+            </div>
+            <!-- Feature 5 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/color/64/ffffff/pdf-2.png" class="mb-4 mx-auto" alt="PDF Reports">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">PDF Reports</h3>
+                <p class="text-gray-200">
+                    Generate downloadable PDF reports of predictions for documentation and sharing with patients or other medical professionals.
+                </p>
+            </div>
+            <!-- Feature 6 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/color/64/ffffff/data-configuration.png" class="mb-4 mx-auto" alt="Real-Time Accuracy">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">Real-Time Accuracy Metrics</h3>
+                <p class="text-gray-200">
+                    View real-time model accuracy and performance metrics, including confusion matrix, directly in the app.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-950 py-6 mt-12 text-center text-gray-300 text-sm">
+        <p>&copy; 2025 PneumoDetect. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menuBtn').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

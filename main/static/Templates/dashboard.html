@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoDetect Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 min-h-screen text-white">
+
+    <!-- Sticky Navbar -->
+    <header class="bg-blue-950 bg-opacity-90 fixed top-0 left-0 w-full z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <h1 class="text-2xl font-bold">PneumoDetect</h1>
+            <nav class="space-x-6 hidden md:flex">
+                <a href="{{ url_for('dashboard') }}" class="hover:text-yellow-300">Dashboard</a>
+                <a href="{{ url_for('predict') }}" class="hover:text-yellow-300">Predict</a>
+                <a href="{{ url_for('features') }}" class="hover:text-yellow-300">Features</a>
+                <a href="{{ url_for('about') }}" class="hover:text-yellow-300">About</a>
+                <a href="{{ url_for('logout') }}" class="hover:text-red-400">Logout</a>
+            </nav>
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                ☰
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden flex-col bg-blue-950 px-6 pb-4 space-y-2 md:hidden">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+            <a href="{{ url_for('features') }}">Features</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="container mx-auto pt-28 pb-12 px-6">
+        <!-- Welcome Card -->
+        <div class="bg-blue-800 p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-3xl font-bold">Welcome, {{ current_user.username }} 👋</h2>
+            <p class="mt-2 text-gray-300">Here’s an overview of your activity and results.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-blue-700 p-5 rounded-lg shadow-md text-center">
+                <h3 class="text-lg font-semibold">Total Predictions</h3>
+                <p class="text-4xl font-bold mt-2">{{ total_predictions }}</p>
+            </div>
+            <div class="bg-green-700 p-5 rounded-lg shadow-md text-center">
+                <h3 class="text-lg font-semibold">Accuracy</h3>
+                <p class="text-4xl font-bold mt-2">{{ accuracy }}%</p>
+            </div>
+            <div class="bg-purple-700 p-5 rounded-lg shadow-md text-center">
+                <h3 class="text-lg font-semibold">Last Prediction</h3>
+                <p class="mt-2">{{ last_prediction_time }}</p>
+            </div>
+        </div>
+
+        <!-- Prediction History Table -->
+        <div class="bg-blue-800 p-6 rounded-lg shadow-lg overflow-x-auto">
+            <h3 class="text-2xl font-bold mb-4">Prediction History</h3>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-blue-900">
+                        <th class="py-3 px-4">Date</th>
+                        <th class="py-3 px-4">Image</th>
+                        <th class="py-3 px-4">Result</th>
+                        <th class="py-3 px-4">Confidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in prediction_history %}
+                    <tr class="border-b border-blue-700">
+                        <td class="py-3 px-4">{{ record.date }}</td>
+                        <td class="py-3 px-4">
+                            <img src="{{ url_for('static', filename='uploads/' + record.image_filename) }}" 
+                                 alt="X-ray" class="w-16 h-16 rounded">
+                        </td>
+                        <td class="py-3 px-4">{{ record.result }}</td>
+                        <td class="py-3 px-4">{{ record.confidence }}%</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-gray-300">No predictions yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quick Action Buttons -->
+        <div class="flex flex-wrap gap-4 mt-8">
+            <a href="{{ url_for('predict') }}" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg shadow-md">Run New Prediction</a>
+            <a href="{{ url_for('logout') }}" class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg shadow-md">Logout</a>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+{% endblock %}
+

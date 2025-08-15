@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Prediction Results{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl text-center">
+        <h1 class="text-3xl font-bold mb-4 text-indigo-600">Prediction Results</h1>
+
+        <div class="mb-6">
+            <img src="{{ url_for('static', filename='uploads/' + image_filename) }}" 
+                 alt="Uploaded X-ray" 
+                 class="rounded-lg shadow-md mx-auto max-h-96">
+        </div>
+
+        <p class="text-xl mb-4">
+            The uploaded chest X-ray was analyzed using <strong>PneumoDetect</strong>.
+        </p>
+
+        <div class="p-4 border rounded-lg bg-gray-100 shadow-md">
+            <p class="text-lg">
+                <span class="font-semibold">Prediction:</span> 
+                <span class="{% if prediction == 'Pneumonia Detected' %}text-red-600{% else %}text-green-600{% endif %}">
+                    {{ prediction }}
+                </span>
+            </p>
+            <p class="mt-2 text-gray-600">
+                Confidence: <span class="font-semibold">{{ confidence }}%</span>
+            </p>
+        </div>
+
+        <div class="mt-6 flex justify-center gap-4">
+            <a href="{{ url_for('predict') }}" 
+               class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow">
+               Try Another Image
+            </a>
+            <a href="{{ url_for('history') }}" 
+               class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg shadow">
+               View History
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    <footer class="bg-blue-900 text-white text-center py-4 mt-10">
+        <p>&copy; 2025 PneumoDetect. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}

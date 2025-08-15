@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - PneumoDetect{% endblock %}
+
+{% block content %}
+
+<!-- templates/admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PneumoDetect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-900 to-blue-700 min-h-screen text-white">
+
+    <!-- Sticky Navbar -->
+    <header class="bg-blue-950 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-4 py-3">
+            <h1 class="text-2xl font-bold">PneumoDetect Admin</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="{{ url_for('home') }}" class="hover:text-yellow-300">Home</a>
+                <a href="{{ url_for('features') }}" class="hover:text-yellow-300">Features</a>
+                <a href="{{ url_for('about') }}" class="hover:text-yellow-300">About</a>
+                <a href="{{ url_for('dashboard') }}" class="hover:text-yellow-300">User Dashboard</a>
+                <a href="{{ url_for('predict') }}" class="hover:text-yellow-300">Predict</a>
+                <a href="{{ url_for('logout') }}" class="bg-red-500 px-3 py-1 rounded hover:bg-red-600">Logout</a>
+            </nav>
+            <button id="menuBtn" class="md:hidden flex items-center px-3 py-2 border rounded text-white border-white hover:bg-blue-800">
+                Menu
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-blue-800 px-4 py-2">
+            <a href="{{ url_for('home') }}" class="block py-1 hover:text-yellow-300">Home</a>
+            <a href="{{ url_for('features') }}" class="block py-1 hover:text-yellow-300">Features</a>
+            <a href="{{ url_for('about') }}" class="block py-1 hover:text-yellow-300">About</a>
+            <a href="{{ url_for('dashboard') }}" class="block py-1 hover:text-yellow-300">User Dashboard</a>
+            <a href="{{ url_for('predict') }}" class="block py-1 hover:text-yellow-300">Predict</a>
+            <a href="{{ url_for('logout') }}" class="block py-1 bg-red-500 rounded hover:bg-red-600 text-center">Logout</a>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="container mx-auto px-4 py-6 space-y-10">
+
+        <!-- Overview Cards -->
+        <section class="grid md:grid-cols-4 gap-6">
+            <div class="bg-blue-800 p-5 rounded-lg shadow-lg">
+                <h3 class="text-lg font-bold">Total Users</h3>
+                <p class="text-3xl mt-2 font-extrabold">125</p>
+            </div>
+            <div class="bg-green-700 p-5 rounded-lg shadow-lg">
+                <h3 class="text-lg font-bold">Predictions Made</h3>
+                <p class="text-3xl mt-2 font-extrabold">542</p>
+            </div>
+            <div class="bg-yellow-600 p-5 rounded-lg shadow-lg">
+                <h3 class="text-lg font-bold">Model Accuracy</h3>
+                <p class="text-3xl mt-2 font-extrabold">96.5%</p>
+            </div>
+            <div class="bg-red-600 p-5 rounded-lg shadow-lg">
+                <h3 class="text-lg font-bold">Pending Reviews</h3>
+                <p class="text-3xl mt-2 font-extrabold">8</p>
+            </div>
+        </section>
+
+        <!-- User Management -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4">User Management</h2>
+            <div class="bg-blue-800 p-4 rounded-lg shadow-lg overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-blue-900">
+                            <th class="px-4 py-2 text-left">User ID</th>
+                            <th class="px-4 py-2 text-left">Name</th>
+                            <th class="px-4 py-2 text-left">Email</th>
+                            <th class="px-4 py-2 text-left">Role</th>
+                            <th class="px-4 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-blue-700">
+                            <td class="px-4 py-2">1</td>
+                            <td class="px-4 py-2">John Doe</td>
+                            <td class="px-4 py-2">john@example.com</td>
+                            <td class="px-4 py-2">User</td>
+                            <td class="px-4 py-2 space-x-2">
+                                <button class="bg-yellow-500 px-2 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                <button class="bg-red-500 px-2 py-1 rounded hover:bg-red-600">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">2</td>
+                            <td class="px-4 py-2">Jane Smith</td>
+                            <td class="px-4 py-2">jane@example.com</td>
+                            <td class="px-4 py-2">Admin</td>
+                            <td class="px-4 py-2 space-x-2">
+                                <button class="bg-yellow-500 px-2 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                <button class="bg-red-500 px-2 py-1 rounded hover:bg-red-600">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Prediction History -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4">Prediction History</h2>
+            <div class="bg-blue-800 p-4 rounded-lg shadow-lg overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-blue-900">
+                            <th class="px-4 py-2 text-left">Prediction ID</th>
+                            <th class="px-4 py-2 text-left">User</th>
+                            <th class="px-4 py-2 text-left">Date</th>
+                            <th class="px-4 py-2 text-left">Result</th>
+                            <th class="px-4 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-blue-700">
+                            <td class="px-4 py-2">101</td>
+                            <td class="px-4 py-2">John Doe</td>
+                            <td class="px-4 py-2">2025-08-11</td>
+                            <td class="px-4 py-2">Pneumonia</td>
+                            <td class="px-4 py-2 space-x-2">
+                                <button class="bg-green-500 px-2 py-1 rounded hover:bg-green-600">View</button>
+                                <button class="bg-blue-500 px-2 py-1 rounded hover:bg-blue-600">Download</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById("menuBtn").addEventListener("click", function() {
+            document.getElementById("mobileMenu").classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>
+<div class="py-2 px-4 border-b">
+                                <img src="{{ url_for('static', filename='uploads/' + prediction.image_filename) }}" 
+                                     alt="X-ray Image" class="w-16 h-16 rounded">
+                            </td>
+                            <td class="py-2 px-4 border-b">{{ prediction.result }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <footer class="bg-blue-950 text-center py-4 mt-10">
+        <p>&copy; 2025 PneumoDetect. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</html>
+{% endblock %}

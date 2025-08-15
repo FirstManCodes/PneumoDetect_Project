@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - PneumoDetect{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PneumoDetect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-900 via-blue-800 to-white text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-900 fixed top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <a href="{{ url_for('home') }}" class="text-2xl font-bold text-white">PneumoDetect</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="{{ url_for('home') }}" class="hover:text-yellow-400">Home</a>
+                <a href="{{ url_for('features') }}" class="hover:text-yellow-400">Features</a>
+                <a href="{{ url_for('about') }}" class="text-yellow-400 font-semibold">About</a>
+                <a href="{{ url_for('predict') }}" class="hover:text-yellow-400">Predict</a>
+                <a href="{{ url_for('signup') }}" class="bg-yellow-400 text-blue-900 px-4 py-2 rounded hover:bg-yellow-300">Sign Up</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menuBtn" class="focus:outline-none text-white">
+                    ☰
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden bg-blue-800 md:hidden flex flex-col space-y-4 px-6 py-4">
+            <a href="{{ url_for('home') }}" class="hover:text-yellow-400">Home</a>
+            <a href="{{ url_for('features') }}" class="hover:text-yellow-400">Features</a>
+            <a href="{{ url_for('about') }}" class="text-yellow-400 font-semibold">About</a>
+            <a href="{{ url_for('predict') }}" class="hover:text-yellow-400">Predict</a>
+            <a href="{{ url_for('signup') }}" class="bg-yellow-400 text-blue-900 px-4 py-2 rounded hover:bg-yellow-300">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 bg-gradient-to-r from-blue-900 to-blue-800 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">About PneumoDetect</h1>
+        <p class="max-w-3xl mx-auto text-lg text-gray-200">
+            PneumoDetect is an innovative AI-powered platform designed to assist healthcare professionals 
+            in detecting pneumonia from chest X-ray scans with precision, speed, and reliability.
+        </p>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-16 px-6 bg-white text-gray-900">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-3 text-blue-900">Our Mission</h2>
+                <p class="text-gray-700">
+                    Our mission is to revolutionize pneumonia diagnosis using cutting-edge deep learning 
+                    technology. We aim to reduce diagnostic errors, enhance decision-making for physicians, 
+                    and ultimately save lives through early detection and intervention.
+                </p>
+            </div>
+            <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-3 text-blue-900">Our Vision</h2>
+                <p class="text-gray-700">
+                    We envision a future where AI becomes an integral part of healthcare, ensuring 
+                    affordable, accessible, and accurate diagnostics for communities around the globe, 
+                    especially in regions with limited access to medical experts.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-16 px-6 bg-gradient-to-r from-blue-900 to-blue-800">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 text-yellow-400">Our Story</h2>
+            <p class="text-lg text-gray-200">
+                PneumoDetect was born out of a final-year research project aimed at harnessing the power of deep learning 
+                to detect pneumonia from X-ray images. With access to large datasets and rigorous model training, 
+                we created a system that not only predicts with high accuracy but also delivers results in seconds.  
+                <br><br>
+                This project is not just about technology; it’s about making a real-world impact in healthcare delivery 
+                by improving speed, accuracy, and accessibility of medical diagnostics.
+            </p>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-16 px-6 bg-white text-gray-900">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8">Meet Our Team</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold">Festus Idor</h3>
+                    <p class="text-gray-600">Lead Developer & Researcher</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold">Medical Advisor</h3>
+                    <p class="text-gray-600">Radiology & Pneumonia Specialist</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold">Data Scientist</h3>
+                    <p class="text-gray-600">Model Optimization & Analysis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-6 mt-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2025 PneumoDetect. All Rights Reserved.</p>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-yellow-400">Privacy Policy</a>
+                <a href="#" class="hover:text-yellow-400">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.getElementById('menuBtn').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
+                    Users can track their prediction history, allowing for better monitoring and follow-up of pneumonia cases.
+                </p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg hover:scale-105 transition transform">
+                <img src="https://img.icons8.com/external-flat-juicy-fish/64/ffffff/external-security-cyber-security-flat-flat-juicy-fish.png" class="mb-4 mx-auto" alt="Security">
+                <h3 class="text-2xl font-semibold mb-2 text-yellow-300">Data Security</h3>
+                <p class="text-gray-200">
+                    We prioritize patient data security with robust encryption and compliance with healthcare regulations, ensuring confidentiality and trust.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-950 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center md:flex md:justify-between md:items-center">
+            <p>&copy; 2025 PneumoDetect. All Rights Reserved.</p>
+            <div class="mt-4 md:mt-0 space-x-4">
+                <a href="{{ url_for('home') }}" class="hover:text-blue-300">Home</a>
+                <a href="{{ url_for('about') }}" class="hover:text-blue-300">About</a>
+                <a href="{{ url_for('features') }}" class="hover:text-blue-300">Features</a>
+                <a href="{{ url_for('predict') }}" class="hover:text-blue-300">Predict</a>
+                <a href="{{ url_for('signup') }}" class="hover:text-blue-300">Sign Up</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

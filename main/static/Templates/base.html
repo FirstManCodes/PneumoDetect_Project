@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoDetect</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-600 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="text-white font-bold text-lg flex items-center">
+                <i class="fas fa-lungs mr-2"></i> PneumoDetect
+            </a>
+            
+            <!-- Menu Button (Mobile) -->
+            <button id="menu-btn" class="text-white text-2xl md:hidden">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Desktop Menu -->
+            <ul id="menu" class="hidden md:flex space-x-6 text-white font-medium">
+                <li><a href="{{ url_for('home') }}" class="hover:underline flex items-center"><i class="fas fa-home mr-2"></i>Home</a></li>
+                <li><a href="{{ url_for('features') }}" class="hover:underline flex items-center"><i class="fas fa-star mr-2"></i>Features</a></li>
+                <li><a href="{{ url_for('predict') }}" class="hover:underline flex items-center"><i class="fas fa-stethoscope mr-2"></i>Predict</a></li>
+                <li><a href="{{ url_for('history') }}" class="hover:underline flex items-center"><i class="fas fa-history mr-2"></i>History</a></li>
+                <li><a href="{{ url_for('dashboard') }}" class="hover:underline flex items-center"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
+                <li><a href="{{ url_for('about') }}" class="hover:underline flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a></li>
+                <li><a href="{{ url_for('contact') }}" class="hover:underline flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu -->
+        <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-blue-700 p-4 text-white md:hidden">
+            <li><a href="{{ url_for('home') }}" class="hover:underline flex items-center"><i class="fas fa-home mr-2"></i>Home</a></li>
+            <li><a href="{{ url_for('features') }}" class="hover:underline flex items-center"><i class="fas fa-star mr-2"></i>Features</a></li>
+            <li><a href="{{ url_for('predict') }}" class="hover:underline flex items-center"><i class="fas fa-stethoscope mr-2"></i>Predict</a></li>
+            <li><a href="{{ url_for('history') }}" class="hover:underline flex items-center"><i class="fas fa-history mr-2"></i>History</a></li>
+            <li><a href="{{ url_for('dashboard') }}" class="hover:underline flex items-center"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
+            <li><a href="{{ url_for('about') }}" class="hover:underline flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a></li>
+            <li><a href="{{ url_for('contact') }}" class="hover:underline flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="container mx-auto py-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Script -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

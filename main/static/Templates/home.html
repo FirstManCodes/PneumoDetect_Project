@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoDetect - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white">
+
+    <!-- Sticky Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-blue-950 bg-opacity-90 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="text-2xl font-bold flex items-center gap-2">
+                <i class="fas fa-lungs"></i> PneumoDetect
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6 items-center font-medium">
+                <a href="{{ url_for('home') }}" class="hover:text-blue-300 flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="{{ url_for('features') }}" class="hover:text-blue-300 flex items-center"><i class="fas fa-star mr-2"></i>Features</a>
+                <a href="{{ url_for('about') }}" class="hover:text-blue-300 flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="{{ url_for('predict') }}" class="hover:text-blue-300 flex items-center"><i class="fas fa-stethoscope mr-2"></i>Predict</a>
+                <a href="{{ url_for('contact') }}" class="hover:text-blue-300 flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <a href="{{ url_for('signup') }}" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold flex items-center"><i class="fas fa-user-plus mr-2"></i>Sign Up</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-950 p-4 space-y-3 font-medium">
+            <a href="{{ url_for('home') }}" class="flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="{{ url_for('features') }}" class="flex items-center"><i class="fas fa-star mr-2"></i>Features</a>
+            <a href="{{ url_for('about') }}" class="flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="{{ url_for('predict') }}" class="flex items-center"><i class="fas fa-stethoscope mr-2"></i>Predict</a>
+            <a href="{{ url_for('contact') }}" class="flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <a href="{{ url_for('signup') }}" class="flex items-center bg-blue-500 hover:bg-blue-600 rounded-lg px-3 py-2"><i class="fas fa-user-plus mr-2"></i>Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto pt-28 pb-16 px-6">
+        <div class="md:w-1/2 space-y-6">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+                Detecting <span class="text-blue-400">PNEUMONIA</span> with AI  
+            </h1>
+            <p class="text-lg text-gray-300">
+                Harness the power of Artificial Intelligence to detect pneumonia quickly and accurately from chest X-ray images. PneumoDetect empowers healthcare professionals with fast, reliable predictions to save lives.
+            </p>
+            <div class="flex gap-4">
+                <a href="{{ url_for('signup') }}" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold shadow-lg flex items-center">
+                    Get Started <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="{{ url_for('about') }}" class="px-6 py-3 bg-transparent border border-white hover:bg-white hover:text-blue-900 rounded-lg font-semibold">
+                    Learn More
+                </a>
+            </div>
+        </div>
+        <div class="md:w-1/2 mt-10 md:mt-0">
+            <img src="https://cdn-icons-png.flaticon.com/512/4727/4727452.png" alt="AI Pneumonia Detection" class="w-full max-w-md mx-auto drop-shadow-lg">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-blue-800 py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold">Why Choose PneumoDetect?</h2>
+            <p class="text-gray-200 mt-2">Cutting-edge AI, seamless experience, and rapid results.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            <div class="bg-blue-900 p-6 rounded-xl shadow-lg text-center">
+                <i class="fas fa-microscope text-blue-400 text-4xl mb-4"></i>
+                <h3 class="font-semibold text-xl">AI-Powered Accuracy</h3>
+                <p class="text-gray-300 mt-2">Leverages deep learning to deliver precise detection results from chest X-ray scans.</p>
+            </div>
+            <div class="bg-blue-900 p-6 rounded-xl shadow-lg text-center">
+                <i class="fas fa-bolt text-yellow-400 text-4xl mb-4"></i>
+                <h3 class="font-semibold text-xl">Fast Predictions</h3>
+                <p class="text-gray-300 mt-2">Get results in seconds to speed up medical decisions and treatments.</p>
+            </div>
+            <div class="bg-blue-900 p-6 rounded-xl shadow-lg text-center">
+                <i class="fas fa-user-shield text-green-400 text-4xl mb-4"></i>
+                <h3 class="font-semibold text-xl">Secure & Private</h3>
+                <p class="text-gray-300 mt-2">Your data is processed securely, ensuring confidentiality and trust.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-950 py-8 mt-10 text-center text-gray-400">
+        <p>&copy; 2025 PneumoDetect. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

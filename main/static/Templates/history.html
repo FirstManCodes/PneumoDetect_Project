@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Prediction History{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 px-4 py-8">
+    <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-indigo-600 mb-6 text-center">Prediction History</h1>
+
+        {% if history and history|length > 0 %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full border border-gray-200">
+                    <thead class="bg-indigo-600 text-white">
+                        <tr>
+                            <th class="px-4 py-2 text-left">#</th>
+                            <th class="px-4 py-2 text-left">Image</th>
+                            <th class="px-4 py-2 text-left">Prediction</th>
+                            <th class="px-4 py-2 text-left">Confidence</th>
+                            <th class="px-4 py-2 text-left">Date</th>
+                            <th class="px-4 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {% for record in history %}
+                        <tr>
+                            <td class="px-4 py-2">{{ loop.index }}</td>
+                            <td class="px-4 py-2">
+                                <img src="{{ url_for('static', filename='uploads/' + record.image_filename) }}" 
+                                     alt="X-ray Image"
+                                     class="h-16 rounded shadow">
+                            </td>
+                            <td class="px-4 py-2 {% if record.prediction == 'Pneumonia Detected' %}text-red-600{% else %}text-green-600{% endif %} font-semibold">
+                                {{ record.prediction }}
+                            </td>
+                            <td class="px-4 py-2">{{ record.confidence }}%</td>
+                            <td class="px-4 py-2 text-gray-600">{{ record.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td class="px-4 py-2">
+                                <a href="{{ url_for('view_result', id=record.id) }}" 
+                                   class="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded shadow text-sm">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-center text-gray-500 text-lg">No prediction history found.</p>
+        {% endif %}
+
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('predict') }}" 
+               class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow">
+               Make a New Prediction
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    <footer class="bg-blue-900 text-white text-center py-4 mt-10">
+        <p>&copy; 2025 PneumoDetect. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}

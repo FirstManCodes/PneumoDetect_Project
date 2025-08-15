@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoDetect - Predict</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white font-sans min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <header class="bg-blue-950 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <a href="{{ url_for('home') }}" class="text-2xl font-bold tracking-wide text-white">PneumoDetect</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="{{ url_for('home') }}" class="hover:text-blue-300">Home</a>
+                <a href="{{ url_for('features') }}" class="hover:text-blue-300">Features</a>
+                <a href="{{ url_for('about') }}" class="hover:text-blue-300">About</a>
+                <a href="{{ url_for('predict') }}" class="hover:text-blue-300 font-semibold border-b-2 border-blue-300">Predict</a>
+                <a href="{{ url_for('signup') }}" class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 transition">Sign Up</a>
+                <a href="{{ url_for('login') }}" class="hover:text-blue-300">Login</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-white focus:outline-none">
+                ☰
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-blue-900 px-6 pb-4 space-y-2">
+            <a href="{{ url_for('home') }}" class="block hover:text-blue-300">Home</a>
+            <a href="{{ url_for('features') }}" class="block hover:text-blue-300">Features</a>
+            <a href="{{ url_for('about') }}" class="block hover:text-blue-300">About</a>
+            <a href="{{ url_for('predict') }}" class="block hover:text-blue-300">Predict</a>
+            <a href="{{ url_for('signup') }}" class="block bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 transition">Sign Up</a>
+            <a href="{{ url_for('login') }}" class="block hover:text-blue-300">Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col justify-center items-center px-6 py-12">
+        <h1 class="text-4xl font-bold mb-4 text-center">Pneumonia Detection</h1>
+        <p class="max-w-2xl text-center text-blue-200 mb-8">
+            Upload your chest X-ray image (.jpg) and let our deep learning model analyze it for signs of pneumonia in seconds.
+        </p>
+
+        <!-- Upload Form -->
+        <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data"
+              class="bg-blue-800 rounded-lg shadow-lg p-8 max-w-lg w-full space-y-6">
+            
+            <div class="flex flex-col items-center border-2 border-dashed border-blue-400 rounded-lg p-6 cursor-pointer hover:border-blue-300 transition">
+                <input type="file" name="xray" accept=".jpg" required class="hidden" id="fileUpload">
+                <label for="fileUpload" class="flex flex-col items-center cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M7 16V4m0 0l-4 4m4-4l4 4M17 8v12m0 0l-4-4m4 4l4-4"/>
+                    </svg>
+                    <span class="text-blue-300">Click to upload your X-ray (.jpg)</span>
+                </label>
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-3 px-4 rounded-lg shadow-lg transition">
+                Analyze Now
+            </button>
+        </form>
+
+        <!-- Prediction Result -->
+        {% if prediction %}
+        <div class="mt-8 bg-blue-900 rounded-lg p-6 max-w-lg text-center shadow-lg">
+            <h2 class="text-2xl font-bold mb-2">Prediction Result</h2>
+            <p class="text-lg">{{ prediction }}</p>
+        </div>
+        {% endif %}
+    </main>
+
+   
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        document.getElementById('menuBtn').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+
+                    <p>Our user-friendly interface allows anyone to upload images and receive results without technical expertise.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="bg-blue-800 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 text-yellow-300">Meet Our Team</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold">Dr. Jane Doe</h3>
+                    <p class="text-gray-600">Lead Radiologist & AI Specialist</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+                    <h3 class="text-xl font-bold">John Smith</h3>
+                    <p class="text-gray-600">Software Engineer & Data Analyst</p>
+
+                     <!-- Footer -->
+    <footer class="bg-blue-950 text-center py-4 text-blue-300 text-sm">
+        &copy; 2025 PneumoDetect. All rights reserved.
+    </footer>
+    {% endblock %}
+                    </html>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Contact Us - PneumoDetect{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto py-12 px-6">
+    <h2 class="text-3xl font-bold text-center text-blue-900 mb-6">Contact Us</h2>
+    <p class="text-center text-gray-600 mb-10">
+        Have questions or need support? Fill out the form below and we'll get back to you shortly.
+    </p>
+
+    <form action="#" method="POST" class="bg-white shadow-md rounded-lg p-8 space-y-6">
+        <div>
+            <label for="name" class="block font-medium text-gray-700">Full Name</label>
+            <input type="text" id="name" name="name" required
+                class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500">
+        </div>
+        <div>
+            <label for="email" class="block font-medium text-gray-700">Email Address</label>
+            <input type="email" id="email" name="email" required
+                class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500">
+        </div>
+        <div>
+            <label for="message" class="block font-medium text-gray-700">Message</label>
+            <textarea id="message" name="message" rows="4" required
+                class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+        </div>
+        <div class="text-center">
+            <button type="submit"
+                class="bg-yellow-500 text-white px-6 py-2 rounded shadow hover:bg-yellow-600 transition">
+                Send Message
+            </button>
+        </div>
+    </form>
+</section>
+{% endblock %}
+<footer class="bg-blue-900 text-white text-center py-4 mt-10">
+    <p>&copy; 2025 PneumoDetect. All rights reserved.</p>
